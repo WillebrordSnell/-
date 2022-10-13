@@ -27,4 +27,7 @@
  * SR：在yes/no问题上使用Removal，其他问题上用Shuffling(非yes/or问题上包含着一些和答案相关的信息因此用Shuffling更为合适)
 
 ### Unbiased Sample Selection
-作者蒋unbiased(or OOD) sample定义为训练集中对每个问题类别里答案分布出现频率较少的样本
+作者将unbiased(or OOD) sample定义为训练集中对每个问题类别里答案分布出现频率较少的样本。因此unbiased sample中就不大可能包含影响模型鲁棒性的不可信的关系，并且positive samples中一些意料之外的噪声也许会对unbiased sample的学习带来消极的影响。所以基于上述两点原因，作者并没有对unbiased samples建立positive samples。并且作者提出了一个新的算法来过滤掉这些unbiased sample，该算法包含以下三步：
+* (i) calculating the answer frequencies;
+* (ii) determining the unbiased answer proportion;
+* (iii) selecting the unbiased samples.
