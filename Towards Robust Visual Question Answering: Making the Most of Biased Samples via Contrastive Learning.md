@@ -39,6 +39,7 @@
 作者基于三种朴素(plain VQA models)的VQA模型(BAN,UpDn,LXMERT)和两种消融(debiasing methods)方式(LMH,SAR)测试MMBS，同时作者还
 ###Main Results
 ![image](https://user-images.githubusercontent.com/33151771/195863648-6506d75d-2576-4a21-bc66-24a234a678a1.png)
-* Performance based on different VQA models：本文提出的方法能够在baseline的基础上得到较大的提升(1.66 ~10.60 absolute accuracy improvement)。由于YES/NO问题更容易受language bias的影响，所以对于一般的模型，MMBS在YES/NO问题上的表现提升较大(22.73 ~29.28)。在ID上,baseline在大多数debiasing methods都牺牲VQA v2的性能的情况下也能通过MMBS进行些许的提升
-* 
-* Comparison with ensemble-based SOTAs:
+* Performance based on different VQA models：本文提出的方法能够在baseline的基础上得到较大的提升(1.66 ~10.60 absolute accuracy improvement)。由于YES/NO问题更容易受language bias的影响，所以对于一般的模型，MMBS在YES/NO问题上的表现提升较大(22.73 ~29.28)。在ID上,baseline在大多数debiasing methods都牺牲VQA v2的性能的情况下也能通过MMBS进行些许的提升。尤其是LMH和LMH+MMBS在VQA v2上5.52有的提升，作者认为这是因为最大化地利用biased samples 能够有效地减轻在ID上性能的下降
+![image](https://user-images.githubusercontent.com/33151771/195873110-220686e8-6136-423a-8402-5f71ccff984b.png)
+
+* Comparison with ensemble-based SOTAs:从上表中基于UpDn的backbone我们可以观察到：1):在VQA-CP v2上提升最大的LPF在VQA v2中降低得很多，这种现象说明确实是有在客服language priors和
