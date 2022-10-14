@@ -31,3 +31,14 @@
 * (i) calculating the answer frequencies;
 * (ii) determining the unbiased answer proportion;
 * (iii) selecting the unbiased samples.
+
+## Experiments
+### Datasets and Evaluation
+作者认为此前很多工作在VQA v2和VQA-CP v2上表现不一并且VQA-CP v2数据集上更能显示出模型的鲁棒性。同时，作者认为有许多工作是在VQA v2上牺牲性能以换取在VQA-CP v2的表现，而一个鲁棒性强的VQA模型应该在两个数据集上都有较好的表现。因此作者对各个模型都计算在两个数据集上ID,OOD的表现
+### Baselines and Implementations
+作者基于三种朴素(plain VQA models)的VQA模型(BAN,UpDn,LXMERT)和两种消融(debiasing methods)方式(LMH,SAR)测试MMBS，同时作者还
+###Main Results
+![image](https://user-images.githubusercontent.com/33151771/195863648-6506d75d-2576-4a21-bc66-24a234a678a1.png)
+* Performance based on different VQA models：本文提出的方法能够在baseline的基础上得到较大的提升(1.66 ~10.60 absolute accuracy improvement)。由于YES/NO问题更容易受language bias的影响，所以对于一般的模型，MMBS在YES/NO问题上的表现提升较大(22.73 ~29.28)。在ID上,baseline在大多数debiasing methods都牺牲VQA v2的性能的情况下也能通过MMBS进行些许的提升
+* 
+* Comparison with ensemble-based SOTAs:
