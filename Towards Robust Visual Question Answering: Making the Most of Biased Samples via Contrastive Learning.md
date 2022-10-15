@@ -68,7 +68,7 @@
 (2)：对于α：结果显示对比学习这个objectivbe确实有益但过分关注这个objectivbe会有损最终的表现。同时我们也发现在LMH+MMBS上最佳的α相对于UpDn+MMBS中的α要更小，因为LMH本身就有一定的能力去减轻langiage priors。
 ![image](https://user-images.githubusercontent.com/33151771/195972208-da9854da-7275-48cc-b9a0-4862c4ea0296.png)
 * Ablation study:下表调查了MMBS各个部分的作用：  
-(1): +SR能够稳定提升模型的表现(尤其是在YES/NO问题上)
-(2): 对比+SR和+SR+β，作者发现unbiased sanple selection module一定会对MMBS有效，说明我们不需要去构建unbiased samples的positive sample
+(1): +SR能够稳定提升模型的表现(尤其是在YES/NO问题上)  
+(2): 对比+SR和+SR+β，作者发现unbiased sanple selection module一定会对MMBS有效，说明我们不需要去构建unbiased samples的positive sample  
 (3): 惩罚因子Wc始终对模型有积极的影响，进一步证明了对于每个问题类别灵活调整unbiased sample的比例是一个有用的策略。
 ![image](https://user-images.githubusercontent.com/33151771/195972204-35760f76-89de-4b8f-a2ba-dad65005db95.png)
