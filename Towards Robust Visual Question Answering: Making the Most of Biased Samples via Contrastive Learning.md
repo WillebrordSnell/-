@@ -63,7 +63,7 @@
 (4)：B策略明显不如SR策略，因为从每个样本中同时学习两个positive samples也许会让模型confuse
 ![image](https://user-images.githubusercontent.com/33151771/195973120-b7a9b4ef-6eb0-48ca-88b2-1063d6482763.png)
 
-* The effect of β and α：
+* The effect of β and α：  
 (1)：对于β：当β太小的时候，给unbiased samples构建positive samples可能从unbiased samples会影响学习的robust imformation；而β太大，则会不为一些biased samples构建positive samples，就降低了从对比学习中获得的收益。  
 (2)：对于α：结果显示对比学习这个objectivbe确实有益但过分关注这个objectivbe会有损最终的表现。同时我们也发现在LMH+MMBS上最佳的α相对于UpDn+MMBS中的α要更小，因为LMH本身就有一定的能力去减轻langiage priors。
 ![image](https://user-images.githubusercontent.com/33151771/195972208-da9854da-7275-48cc-b9a0-4862c4ea0296.png)
