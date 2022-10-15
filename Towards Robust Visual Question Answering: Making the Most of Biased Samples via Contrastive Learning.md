@@ -45,27 +45,27 @@
 ![image](https://user-images.githubusercontent.com/33151771/195873110-220686e8-6136-423a-8402-5f71ccff984b.png)
 
 * Comparison with ensemble-based SOTAs: 从上表中基于UpDn的backbone我们可以观察到：
-1):在VQA-CP v2上提升最大的LPF在VQA v2中降低得很多，这种现象说明确实是有在克服language priors的能力和记忆样本知识的能力(the ability to memorize the knowledge of in-distribution samples)做取舍的,CF-VQA在一定程度上减轻了这种现象但是它在VQA-CP v2上的表现明显不如本文提出的方法。
-2)：LMH+MMBS在VQA-CP v2上取得了最好的表现并且能够复现在VQA v2上的正确率，甚至远超了其他的工作。这说明这种"取舍"问题通过本文提出的方法能够得到有效地解决。
-3):此前的工作(例如CF-VQA和LPF)能偶在longuage biased更有可能存在的YES/NO问题上取得高正确率，相较之下，本文的方法在YES/NO问题上取得相对较好的成绩的同时能在更有挑战性的非YES/NO问题上大大优于它们。
+(1):在VQA-CP v2上提升最大的LPF在VQA v2中降低得很多，这种现象说明确实是有在克服language priors的能力和记忆样本知识的能力(the ability to memorize the knowledge of in-distribution samples)做取舍的,CF-VQA在一定程度上减轻了这种现象但是它在VQA-CP v2上的表现明显不如本文提出的方法。  
+(2)：LMH+MMBS在VQA-CP v2上取得了最好的表现并且能够复现在VQA v2上的正确率，甚至远超了其他的工作。这说明这种"取舍"问题通过本文提出的方法能够得到有效地解决。  
+(3):此前的工作(例如CF-VQA和LPF)能偶在longuage biased更有可能存在的YES/NO问题上取得高正确率，相较之下，本文的方法在YES/NO问题上取得相对较好的成绩的同时能在更有挑战性的非YES/NO问题上大大优于它们。
 
 * Comparison with data-balancing SOTAs：从下表我们可以观察到
-1)：大多数的bata-balancing方式都会影响ID上的表现，作者认为这是由于balanced training priors和biased test priors的不一致导致的。
-2)：相较于另一种对比学习模型(LMH+CSS+CL：通过data-balancing方式高金LMH+CSS，在VQA-CP v2上提升了0.23，并且牺牲了在VQA v2上的正确率)，本文提出的MMVS即使变化了VQA backbones也不会影响ID的表现。
-3)：本文的在以SAR为baseline上(SAR+MMBS)带来了巨大的提升，甚至能够与MUTANT(有最好的性能)的性能有一较之力，并且不需要额外的人工去标注其他大量的数据
+(1)：大多数的bata-balancing方式都会影响ID上的表现，作者认为这是由于balanced training priors和biased test priors的不一致导致的。
+(2)：相较于另一种对比学习模型(LMH+CSS+CL：通过data-balancing方式高金LMH+CSS，在VQA-CP v2上提升了0.23，并且牺牲了在VQA v2上的正确率)，本文提出的MMVS即使变化了VQA backbones也不会影响ID的表现。
+(3)：本文的在以SAR为baseline上(SAR+MMBS)带来了巨大的提升，甚至能够与MUTANT(有最好的性能)的性能有一较之力，并且不需要额外的人工去标注其他大量的数据
 ![image](https://user-images.githubusercontent.com/33151771/195971501-db4af426-98f3-448b-afff-7e75a8dc507e.png)
 
 ### Analysis on Individual Components and Hyper-Parameters
-* The effect of positive sample construction strategies：从UpDn和LXM中的结果可以得出结论 
-1)：S,R策略均可以提升模型的表现，说明此种设计是有效的，并且带来的好处要大于语义噪声带来的坏处。
-2)：R策略要优于S策略,因为模型可能仍会在category words和剧中其他word进行shuffled的情况下学习一些答案和问题类别的superficial correlation
-3)：SR策略在4种策略种表现最好(尤其是YES/NO问题上)这是因为S,R两种策略分别在非YES/NO和YES/NO问题上表现优秀，而SR结合了这两种策略的优势。
-4)：B策略明显不如SR策略，因为从每个样本中同时学习两个positive samples也许会让模型confuse
+* The effect of positive sample construction strategies：从UpDn和LXM中的结果可以得出结论   
+(1)：S,R策略均可以提升模型的表现，说明此种设计是有效的，并且带来的好处要大于语义噪声带来的坏处。  
+(2)：R策略要优于S策略,因为模型可能仍会在category words和剧中其他word进行shuffled的情况下学习一些答案和问题类别的superficial correlation  
+(3)：SR策略在4种策略种表现最好(尤其是YES/NO问题上)这是因为S,R两种策略分别在非YES/NO和YES/NO问题上表现优秀，而SR结合了这两种策略的优势。  
+(4)：B策略明显不如SR策略，因为从每个样本中同时学习两个positive samples也许会让模型confuse
 ![image](https://user-images.githubusercontent.com/33151771/195973120-b7a9b4ef-6eb0-48ca-88b2-1063d6482763.png)
 
 * The effect of β and α：
-1)：对于β：当β太小的时候，给unbiased samples构建positive samples可能从unbiased samples会影响学习的robust imformation；而β太大，则会不为一些biased samples构建positive samples，就降低了从对比学习中获得的收益。
-2)：对于α：结果显示对比学习这个objectivbe确实有益但过分关注这个objectivbe会有损最终的表现。同时我们也发现在LMH+MMBS上最佳的α相对于UpDn+MMBS中的α要更小，因为LMH本身就有一定的能力去减轻langiage priors。
+(1)：对于β：当β太小的时候，给unbiased samples构建positive samples可能从unbiased samples会影响学习的robust imformation；而β太大，则会不为一些biased samples构建positive samples，就降低了从对比学习中获得的收益。  
+(2)：对于α：结果显示对比学习这个objectivbe确实有益但过分关注这个objectivbe会有损最终的表现。同时我们也发现在LMH+MMBS上最佳的α相对于UpDn+MMBS中的α要更小，因为LMH本身就有一定的能力去减轻langiage priors。
 ![image](https://user-images.githubusercontent.com/33151771/195972208-da9854da-7275-48cc-b9a0-4862c4ea0296.png)
 
 ![image](https://user-images.githubusercontent.com/33151771/195972204-35760f76-89de-4b8f-a2ba-dad65005db95.png)
