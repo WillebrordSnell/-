@@ -1,5 +1,5 @@
 # SimCSE: Simple Contrastive Learning of Sentence Embeddings
-    原文链接： [https://arxiv.org/abs/2210.04692](https://arxiv.org/abs/2104.08821)
+    原文链接： (https://arxiv.org/abs/2104.08821)
 
 
 
