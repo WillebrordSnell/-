@@ -11,7 +11,10 @@
 如下图所示，作者认为目前大多数的visual dialog model都是通过设计不同的attention机制从而在分别地在训练answer ranking和generating两个task时去捕获一些interaction。最近也有通过训练一整个网络时使用两种decoder去捕获(weakly)generative和discriminative之间的关系。 
 ![image](https://user-images.githubusercontent.com/33151771/197530481-649282bc-8b3a-48e7-9e08-a1d73fd7d159.png)
 作者认为设计这种联合模型(能够对答案进行排序也能够生成目标答案)的task仍有两个挑战
-* 一方面，discriminative setting
+* 怎样完整地将discriminative中answer candidates里丰富的语义信息传递给answer generation 
+作者认为discriminative setting集中于dialog context和answer的alignment，而目前大多数方式都是两步式的pipeline：对于给定的dialog context，answer candidates首先从corresponding answer set中随机选择，每个answer candidate再与对应的dialog context匹配以决策出该候选答案是否是target answer。这种将dialog每轮单独处理，并且没有区分dialog context representation，这就引出了第二个挑战
+* 如何捕获一个dialog中其他轮次和其他dialog中所有轮次的context关系
+此外，dialog context在diacerminative setting中增强了answer information，然而在generatiive setting中并没有，并且现存的方式很难在generative setting训练过程中利用到enhanced dialog context representations(因为他们对两个task都是单独处理的)
 
 ## Contributions
 
